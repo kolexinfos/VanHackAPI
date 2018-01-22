@@ -9,17 +9,38 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using VanHackAPI;
+using VanHackAPI.DTOs;
 
 namespace VanHackAPI.Controllers
 {
+    [Authorize]
     public class TopicsController : ApiController
     {
         private VanHackEntities db = new VanHackEntities();
 
         // GET: api/Topics
-        public IQueryable<Topic> GetTopics()
+        public IQueryable<TopicDTO> GetTopics()
         {
-            return db.Topics;
+            IQueryable<TopicDTO> topics;
+            var context = new VanHackEntities();
+            topics = context.Topics.Select(x => new TopicDTO
+            {
+                Title = x.Title,
+                Category = x.Category.Name,
+                FullText = x.FullText,
+                DateCreated = x.DateCreated,
+                Username = x.AspNetUser.UserName,
+                Comments = x.Comments.Select(y => new CommentDTO
+                {
+                    Fulltext = y.Fulltext,
+                    DateCreated = y.DateCreated,
+                    Edited = y.Edited,
+                    Username = y.AspNetUser.UserName
+                })
+            });          
+            
+            return topics;
+                                
         }
 
         // GET: api/Topics/5

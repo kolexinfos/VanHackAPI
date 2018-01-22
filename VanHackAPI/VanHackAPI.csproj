@@ -208,7 +208,7 @@
       <DependentUpon>VanHack.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\OrdersController.cs" />
+    <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\TopicsController.cs" />
     <Compile Include="C__MigrationHistory.cs">
       <DependentUpon>VanHack.tt</DependentUpon>
@@ -216,6 +216,8 @@
     <Compile Include="database_firewall_rules.cs">
       <DependentUpon>VanHack.tt</DependentUpon>
     </Compile>
+    <Compile Include="DTOs\CommentDTO.cs" />
+    <Compile Include="DTOs\TopicDTO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

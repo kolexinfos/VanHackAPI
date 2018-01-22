@@ -34,7 +34,7 @@ namespace VanHackAPI
             {
                 AllowInsecureHttp = true,
                 TokenEndpointPath = new PathString("/token"),
-                AccessTokenExpireTimeSpan = TimeSpan.FromDays(1),
+                AccessTokenExpireTimeSpan = TimeSpan.FromDays(30),
                 Provider = new SimpleAuthorizationServerProvider()
             };
 
