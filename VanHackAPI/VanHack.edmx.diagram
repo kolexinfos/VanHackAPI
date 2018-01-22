@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b70b3f1e21d6481681a7abaa25fb0e02" Name="Diagram1">
+        <EntityTypeShape EntityType="VanHackModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VanHackModel.AspNetRole" Width="1.5" PointX="0.75" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="VanHackModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VanHackModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="VanHackModel.AspNetUser" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="VanHackModel.Category" Width="1.5" PointX="6" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="VanHackModel.Comment" Width="1.5" PointX="8.25" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VanHackModel.Topic" Width="1.5" PointX="8.25" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="VanHackModel.database_firewall_rules" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="VanHackModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="VanHackModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="VanHackModel.FK_Comments_AspNetUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="VanHackModel.FK_Topics_AspNetUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="VanHackModel.FK_Topics_Categories" ManuallyRouted="false" />
+        <AssociationConnector Association="VanHackModel.FK_Comments_Topics" ManuallyRouted="false" />
+        <AssociationConnector Association="VanHackModel.AspNetUserRoles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
