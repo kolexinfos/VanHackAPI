@@ -13,17 +13,17 @@ namespace VanHackAPI
     {
         private AuthContext _ctx;
 
-        private UserManager<ApplicationUser> _userManager;
+        private UserManager<IdentityUser> _userManager;
 
         public AuthRepository()
         {
             _ctx = new AuthContext();
-            _userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(_ctx));
+            _userManager = new UserManager<IdentityUser>(new UserStore<IdentityUser>(_ctx));
         }
 
         public async Task<IdentityResult> RegisterUser(UserModel userModel)
         {
-            ApplicationUser user = new ApplicationUser
+            IdentityUser user = new IdentityUser
             {
                 UserName = userModel.UserName
             };
@@ -33,9 +33,9 @@ namespace VanHackAPI
             return result;
         }
 
-        public async Task<ApplicationUser> FindUser(string userName, string password)
+        public async Task<IdentityUser> FindUser(string userName, string password)
         {
-            ApplicationUser user = await _userManager.FindAsync(userName, password);
+            IdentityUser user = await _userManager.FindAsync(userName, password);
 
             return user;
         }
