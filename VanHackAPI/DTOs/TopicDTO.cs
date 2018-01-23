@@ -8,6 +8,7 @@ namespace VanHackAPI.DTOs
 {
     public class TopicDTO
     {
+        public int Id { get; set; }
         [Required]
         public string Title { get; set; }
 

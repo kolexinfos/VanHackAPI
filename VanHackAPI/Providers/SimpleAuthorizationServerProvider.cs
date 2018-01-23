@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.OAuth;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,16 @@ namespace VanHackAPI.Providers
             context.Validated();
         }
 
+        public override Task TokenEndpoint(OAuthTokenEndpointContext context)
+        {
+            foreach (KeyValuePair<string, string> property in context.Properties.Dictionary)
+            {
+                context.AdditionalResponseParameters.Add(property.Key, property.Value);
+            }
+
+            return Task.FromResult<object>(null);
+        }
+
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
 
@@ -30,13 +41,23 @@ namespace VanHackAPI.Providers
                     context.SetError("invalid_grant", "The user name or password is incorrect.");
                     return;
                 }
+
             }
 
             var identity = new ClaimsIdentity(context.Options.AuthenticationType);
             identity.AddClaim(new Claim("sub", context.UserName));
             identity.AddClaim(new Claim("role", "user"));
 
-            context.Validated(identity);
+            var props = new AuthenticationProperties(new Dictionary<string, string>
+                        {
+                            { "username" , context.UserName }
+
+                        });
+
+            var ticket = new AuthenticationTicket(identity, props);
+
+            context.Validated(ticket);
+            return;
 
         }
     }

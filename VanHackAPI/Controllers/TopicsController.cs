@@ -13,10 +13,11 @@ using VanHackAPI.DTOs;
 
 namespace VanHackAPI.Controllers
 {
-    [Authorize]
+   
     public class TopicsController : ApiController
     {
         private VanHackEntities db = new VanHackEntities();
+
 
         // GET: api/Topics
         public IQueryable<TopicDTO> GetTopics()
@@ -25,6 +26,7 @@ namespace VanHackAPI.Controllers
             var context = new VanHackEntities();
             topics = context.Topics.Select(x => new TopicDTO
             {
+                Id = x.Id,
                 Title = x.Title,
                 Category = x.Category.Name,
                 FullText = x.FullText,
@@ -43,6 +45,7 @@ namespace VanHackAPI.Controllers
                                 
         }
 
+        [Authorize]
         // GET: api/Topics/5
         [ResponseType(typeof(Topic))]
         public IHttpActionResult GetTopic(int id)
@@ -56,6 +59,7 @@ namespace VanHackAPI.Controllers
             return Ok(topic);
         }
 
+        [Authorize]
         // PUT: api/Topics/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutTopic(int id, Topic topic)
@@ -91,6 +95,7 @@ namespace VanHackAPI.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
+        [Authorize]
         // POST: api/Topics
         [ResponseType(typeof(Topic))]
         public IHttpActionResult PostTopic(Topic topic)
@@ -106,6 +111,7 @@ namespace VanHackAPI.Controllers
             return CreatedAtRoute("DefaultApi", new { id = topic.Id }, topic);
         }
 
+        [Authorize]
         // DELETE: api/Topics/5
         [ResponseType(typeof(Topic))]
         public IHttpActionResult DeleteTopic(int id)
