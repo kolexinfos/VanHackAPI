@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using VanHackAPI;
+using VanHackAPI.DTOs;
 
 namespace VanHackAPI.Controllers
 {
@@ -17,9 +18,18 @@ namespace VanHackAPI.Controllers
         private VanHackEntities db = new VanHackEntities();
 
         // GET: api/Categories
-        public IQueryable<Category> GetCategories()
+        public IQueryable<CategoryDTO> GetCategories()
         {
-            return db.Categories;
+            IQueryable<CategoryDTO> categories;
+            var context = new VanHackEntities();
+
+            categories = context.Categories.Select(x => new CategoryDTO
+            {
+                Id = x.Id,
+                Name = x.Name
+            });
+
+            return categories;
         }
 
         // GET: api/Categories/5

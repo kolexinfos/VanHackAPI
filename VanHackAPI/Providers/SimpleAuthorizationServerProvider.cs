@@ -42,22 +42,25 @@ namespace VanHackAPI.Providers
                     return;
                 }
 
-            }
 
-            var identity = new ClaimsIdentity(context.Options.AuthenticationType);
-            identity.AddClaim(new Claim("sub", context.UserName));
-            identity.AddClaim(new Claim("role", "user"));
 
-            var props = new AuthenticationProperties(new Dictionary<string, string>
+                var identity = new ClaimsIdentity(context.Options.AuthenticationType);
+                identity.AddClaim(new Claim("sub", context.UserName));
+                identity.AddClaim(new Claim("role", "user"));
+
+                var props = new AuthenticationProperties(new Dictionary<string, string>
                         {
-                            { "username" , context.UserName }
+                            { "username" , context.UserName },
+                            {"userid", user.Id }
 
                         });
 
-            var ticket = new AuthenticationTicket(identity, props);
 
-            context.Validated(ticket);
-            return;
+                var ticket = new AuthenticationTicket(identity, props);
+
+                context.Validated(ticket);
+                return;
+            }
 
         }
     }

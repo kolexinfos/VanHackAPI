@@ -16,6 +16,8 @@ namespace VanHackAPI.DTOs
 
         public string Category { get; set; }
 
+        public int CategoryId { get; set; }
+
         public string Username { get; set; }
 
         public DateTime DateCreated { get; set; }

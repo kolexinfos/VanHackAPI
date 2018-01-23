@@ -31,6 +31,7 @@ namespace VanHackAPI.Controllers
                 Category = x.Category.Name,
                 FullText = x.FullText,
                 DateCreated = x.DateCreated,
+                CategoryId = x.CategoryId,
                 Username = x.AspNetUser.UserName,
                 Comments = x.Comments.Select(y => new CommentDTO
                 {
